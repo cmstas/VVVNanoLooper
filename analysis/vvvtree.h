@@ -425,6 +425,9 @@ class vvvtree {
   vector<int> *Common_jet_overlapfatjet_;
   TBranch *Common_jet_overlapfatjet_branch;
   bool     Common_jet_overlapfatjet_isLoaded;
+  vector<float> *Common_jet_btagDeepFlav_;
+  TBranch *Common_jet_btagDeepFlav_branch;
+  bool     Common_jet_btagDeepFlav_isLoaded;
   vector<float> *Common_jet_pt_jesup_;
   TBranch *Common_jet_pt_jesup_branch;
   bool     Common_jet_pt_jesup_isLoaded;
@@ -1049,6 +1052,7 @@ void LoadAllBranches();
   const vector<int> &Common_jet_hadronFlavour();
   const vector<int> &Common_jet_partonFlavour();
   const vector<int> &Common_jet_overlapfatjet();
+  const vector<float> &Common_jet_btagDeepFlav();
   const vector<float> &Common_jet_pt_jesup();
   const vector<float> &Common_jet_pt_jesdn();
   const vector<float> &Common_jet_pt_jerup();
@@ -1354,6 +1358,7 @@ namespace tas {
   const vector<int> &Common_jet_hadronFlavour();
   const vector<int> &Common_jet_partonFlavour();
   const vector<int> &Common_jet_overlapfatjet();
+  const vector<float> &Common_jet_btagDeepFlav();
   const vector<float> &Common_jet_pt_jesup();
   const vector<float> &Common_jet_pt_jesdn();
   const vector<float> &Common_jet_pt_jerup();

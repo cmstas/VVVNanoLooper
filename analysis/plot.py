@@ -3,13 +3,13 @@
 import plottery_wrapper as p
 import os
 
-analysis_output="/home/users/kdownham/Triboson/VVVNanoLooper/analysis/output_100923_SampleAddition"
-plot_output_dir="/WWZ/100923_SampleAddition"
+analysis_output="/home/users/kdownham/Triboson/VVVNanoLooper/analysis/output_010124_BDTVars"
+plot_output_dir="/WWZ/010924_BDTVars"
 
 histxaxislabeloptions = {
 "DRll"             : {"xaxis_label" : "#DeltaR_{ll}"                           , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
-"MET"              : {"xaxis_label" : "MET [GeV]"                              , "xaxis_ndivisions" : 505 , "nbins" : 30} ,
-"PFMET"            : {"xaxis_label" : "pf MET [GeV]"                           , "xaxis_ndivisions" : 505 , "nbins" : 20} ,
+#"MET"              : {"xaxis_label" : "MET [GeV]"                              , "xaxis_ndivisions" : 505 , "nbins" : 30} ,
+#"PFMET"            : {"xaxis_label" : "pf MET [GeV]"                           , "xaxis_ndivisions" : 505 , "nbins" : 20} ,
 "PuppiMET"         : {"xaxis_label" : "Puppi MET [GeV]"                        , "xaxis_ndivisions" : 505 , "nbins" : 45} , 
 "MT2"              : {"xaxis_label" : "M_{T2} [GeV]"                           , "xaxis_ndivisions" : 505 , "nbins" : 30} ,
 "Pt4l"		   : {"xaxis_label" : "p_{T,4l} [GeV]"			       , "xaxis_ndivisions" : 505 , "nbins" : 48} , 
@@ -24,6 +24,7 @@ histxaxislabeloptions = {
 "Zcand_mll"        : {"xaxis_label" : "Z-candidate m_{ll} [GeV]"               , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
 "Zcand_mll_full"   : {"xaxis_label" : "Z-candidate m_{ll} [GeV]"               , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
 "nb"               : {"xaxis_label" : "# of b-tagged jets"                     , "xaxis_ndivisions" : 505 , "nbins" : 20} ,
+"njets"            : {"xaxis_label" : "N_{jets}"                               , "xaxis_ndivisions" : 505 , "nbins" : 20} ,
 "other_lep0_dxy"   : {"xaxis_label" : "W-candidate lead lepton d_{xy}"         , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
 "other_lep0_dz"    : {"xaxis_label" : "W-candidate lead lepton d_{z}"          , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
 "other_lep0_pt"    : {"xaxis_label" : "W-candidate lead lepton p_{T} [GeV]"    , "xaxis_ndivisions" : 505 , "nbins" : 20} , 
@@ -38,12 +39,28 @@ histxaxislabeloptions = {
 "other_mll_varbin" : {"xaxis_label" : "W-candidate m_{ll} [GeV]"               , "xaxis_ndivisions" : 505 , "nbins" : 20} ,
 "MT2_PuppiMET"     : {"xaxis_label" : "M_{T2} [GeV]"                           , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
 "DR_WW_Z"          : {"xaxis_label" : "#Delta R(Wleps,Zleps)"                  , "xaxis_ndivisions" : 505 , "nbins" : 40} , 
-"DPhi_WW_MET"      : {"xaxis_label" : "#Delta#phi(WW,p_{T}^{miss})"            , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
-"DPhi_Z_MET"       : {"xaxis_label" : "#Delta#phi(Z,p_{T}^{miss})"             , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+#"DPhi_WW_MET"      : {"xaxis_label" : "#Delta#phi(WW,p_{T}^{miss})"            , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+#"DPhi_Z_MET"       : {"xaxis_label" : "#Delta#phi(Z,p_{T}^{miss})"             , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
 "DPhi_WW_PuppiMET" : {"xaxis_label" : "#Delta#phi(WW,p_{T}^{miss})"            , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
 "DPhi_Z_PuppiMET"  : {"xaxis_label" : "#Delta#phi(Z,p_{T}^{miss})"             , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
-"DPhi_WWZ_MET"     : {"xaxis_label" : "#Delta#phi(WWZ,p_{T}^{miss})"           , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+#"DPhi_WWZ_MET"     : {"xaxis_label" : "#Delta#phi(WWZ,p_{T}^{miss})"           , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
 "DPhi_WWZ_PuppiMET": {"xaxis_label" : "#Delta#phi(WWZ,p_{T}^{miss})"           , "xaxis_ndivisions" : 505 , "nbins" : 40} , 
+"nb"               : {"xaxis_label" : "N_{btag} (loose DeepFlav)"              , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"leading_jet_btagDeepFlav" : {"xaxis_label" : "btagDeepFlav score (leading jet)" , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"njets"            : {"xaxis_label" : "N_{jets}"                               , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"leading_jet_pt"   : {"xaxis_label" : "p_{T}^{jet,leading} [GeV]"              , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"subleading_jet_pt": {"xaxis_label" : "p_{T}^{jet,subleading} [GeV]"           , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"HT"               : {"xaxis_label" : "H_{T} [GeV]"                            , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"m4l"              : {"xaxis_label" : "m_{4l} [GeV]"                           , "xaxis_ndivisions" : 505 , "nbins" : 40} , 
+"MT_leading_Wcand" : {"xaxis_label" : "M_{T}^{W1} [GeV]"                       , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"MT_subleading_Wcand": {"xaxis_label" : "M_{T}^{W2} [GeV]"                     , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"MT_Wcands"        : {"xaxis_label" : "M_{T}^{Wcands} [GeV]"                   , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"MT_4lep"          : {"xaxis_label" : "M_{T}^{4lep} [GeV]"                     , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"DPhi_W1_PuppiMET" : {"xaxis_label" : "#Delta#phi(l^{W1},p_{T}^{miss})"        , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"DPhi_W2_PuppiMET" : {"xaxis_label" : "#Delta#phi(l^{W2},p_{T}^{miss})"        , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"min_DR_W1_jet"    : {"xaxis_label" : "min(#Delta R(l^{W1},jet))"              , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"min_DR_W2_jet"    : {"xaxis_label" : "min(#Delta R(l^{W2},jet))"              , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
+"cosHelicityX"     : {"xaxis_label" : "cos(#theta_{X})"                        , "xaxis_ndivisions" : 505 , "nbins" : 40} ,
 }
 
 def plot(year, filterpattern):
@@ -171,8 +188,8 @@ def plot(year, filterpattern):
             extraoptions={
                 "print_yield": True,
                 "lumi_value": lumi,
-                #"nbins": 30,
-		"nbins": 45,
+                "nbins": 30,
+		#"nbins": 45,
                 #"yaxis_log": True,
 		"yaxis_log": False,
                 "ratio_range": [0., 2.],
@@ -197,19 +214,34 @@ if __name__ == "__main__":
 	#"CutOffZ__SRBin",
 	#"CutEMuMT2_trgMatch__SRBin",
 	#"CutEMu",
-	"CutOffZ_trgMatch__SRBin",
+	#"CutOffZ_trgMatch__SRBin",
         #"CutOffZ_trgMatch__SRBin",
 	#"CutOnZ",
 	#"CutEMuBT",
-	#"CutPresel",
+	#"CutPresel__nb",
+	#"CutPresel__njets",
+	#"CutPresel__MT2_PuppiMET",
+	#"CutBVeto__MT2_PuppiMET",
+	#"CutBTag__MT2_PuppiMET",
 	#"CutEMu__other_mll_full",
 	#"CutOffZ__PuppiMET",
 	#"CutOffZ__Pt4l",
-	#"CutBVeto",
-	#"CutEMu_",
+       	#"CutBVeto__SRBin",
+	#"CutEMu__Yield",
+	#"CutOffZTR__Yield",
+	"CutOffZ__SRBin",
+	"CutEMuMT2__SRBin",
+	"CutBVeto__SRBin",
+	#"CutOffZTR__",
+	#"CutEMu__cos",
 	#"CutPresel",
-	#"CutOffZ",
+	#"CutOffZ__cos",
 	#"CutOnZ",
+	#"CutOffZ_trgMatch",
+	#"CutEMuMT2_trgMatch",
+	#"CutOnZ",
+	#"CutEMuBT",
+	#"CutEMu__",
         ]
 
     years = [

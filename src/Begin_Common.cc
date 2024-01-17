@@ -177,6 +177,8 @@ void Begin_Common_Create_Branches()
     // Jet variables
     ana.tx.createBranch<vector<LorentzVector>>("Common_jet_p4");            // Pt sorted selected jet p4s
     ana.tx.createBranch<vector<int>>          ("Common_jet_idxs");          // Pt sorted selected jet idxs (To access rest of the jet variables in NanoAOD)
+    ana.tx.createBranch<vector<float>>        ("Common_jet_btagDeepFlav");  // Pt sorted selected jet btagDeepFlav B score
+    ana.tx.createBranch<vector<float>>        ("Common_jet_btagDeepCSV");   // Pt sorted selected jet btagDeepCSV B score
     ana.tx.createBranch<vector<bool>>         ("Common_jet_passBloose");    // Pt sorted selected jet idxs (To access rest of the jet variables in NanoAOD)
     ana.tx.createBranch<vector<bool>>         ("Common_jet_passBmedium");   // Pt sorted selected jet idxs (To access rest of the jet variables in NanoAOD)
     ana.tx.createBranch<vector<bool>>         ("Common_jet_passBtight");    // Pt sorted selected jet idxs (To access rest of the jet variables in NanoAOD)

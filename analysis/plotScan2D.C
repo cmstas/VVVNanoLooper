@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <cstdio>
 #include <cmath>
 #include <string>
@@ -571,6 +572,7 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
   constexpr double thr_dNLL_3s = 11.83; // 3 sigma
   constexpr double thr_dNLL_4s = 19.33; // 4 sigma
   constexpr double thr_dNLL_5s = 28.74; // 5 sigma
+  constexpr double thr_dNLL_inf = 999; // Infinity
 
   if (!doReuse){
     hh = getHistogramFromTree(tree, strxvar, stryvar);
@@ -657,7 +659,8 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
     { 255, 0, 255 }, // Bright pink
     { 255, 222, 3 }, // Bright gold
     { 180, 180, 180 }, // Gray
-    { 255, 0, 0 } // Red
+    { 255, 0, 0 }, // Red
+    { 255, 255, 255 } // White
     /*
     { 0, 255, 0 }, // Bright green
     { 255, 0, 255 }, // Bright pink
@@ -675,7 +678,7 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
     { 224, 224, 224 } // Gray
     */
   };
-  std::vector<double> stops_dNLL{ 0.0, thr_dNLL_68, thr_dNLL_95, thr_dNLL_3s, thr_dNLL_4s, thr_dNLL_5s };
+  std::vector<double> stops_dNLL{ 0.0, thr_dNLL_68, thr_dNLL_95, thr_dNLL_3s, thr_dNLL_4s, thr_dNLL_5s, thr_dNLL_inf };
   std::vector<double> Red;
   std::vector<double> Green;
   std::vector<double> Blue;
@@ -741,6 +744,7 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
   c->SetTopMargin(npixels_stdframe_xy*relmargin_frame_CMS/npixels_y);
   c->SetBottomMargin((npixels_y - npixels_stdframe_xy*(1.+relmargin_frame_CMS))/npixels_y);
 
+  hh->SetMinimum(0.001);
   hh->GetXaxis()->SetLabelFont(43);
   hh->GetXaxis()->SetLabelOffset(offset_xlabel);
   hh->GetXaxis()->SetLabelSize(npixels_XYLabel);
@@ -822,12 +826,12 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
   best->Draw("Psame");
   l->Draw();
 
-  constexpr bool markPreliminary = false;
+  constexpr bool markPreliminary = true;
   constexpr double lumi2011=5.1;
   constexpr double lumi2012=19.7;
   constexpr double lumi2015=2.7;
   constexpr double lumi201617=77.5;
-  constexpr double lumi20161718=138;
+  constexpr double lumi20161718=137;
   TText* text;
   TPaveText pt(
     npixels_stdframe_xy*relmargin_frame_left/npixels_x,
@@ -851,7 +855,7 @@ void plotScan2D(TString const indir, TString const strxvar, TString const stryva
     text->SetTextAlign(12);
   }
   int theSqrts=13;
-  TString cErgTev = Form("#leq%.0f fb^{-1} (13 TeV)", lumi20161718);
+  TString cErgTev = Form("%.0f fb^{-1} (13 TeV)", lumi20161718);
   text = pt.AddText(0.999, 0.45, cErgTev);
   text->SetTextFont(43);
   text->SetTextSize(npixels_CMSlogo*relsize_CMSlogo_sqrts);

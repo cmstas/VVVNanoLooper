@@ -1,7 +1,8 @@
 void BDTYields(TString channel){
 
-     TString path = "output_090123_metFix/Run2/";
-     std::vector<TString> files = {"NonResWWZ.root","ZHWWZ.root","ZZ.root","TTZ.root","Higgs.root","WZ.root","Other.root"};
+     TString path = "output_010124_BDTVars/Run2/";
+     //std::vector<TString> files = {"NonResWWZ.root","ZHWWZ.root","ZZ.root","TTZ.root","tWZ.root","WZ.root","VVV.root","Other.root"};
+     std::vector<TString> files = {"NonResWWZ.root", "ZHWWZ.root", "BDT_Backgrounds.root"};
 
      for ( auto f: files ){
 

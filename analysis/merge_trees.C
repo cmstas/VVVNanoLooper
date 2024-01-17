@@ -2,8 +2,8 @@ void doMerge(TString fname);
 
 void merge_trees(){
 
-     TString path = "output_090123_metFix/Run2";
-     std::vector<TString> files = {"NonResWWZ.root","ZHWWZ.root","TTZ.root","ZZ.root","WZ.root","Higgs.root","Other.root"};
+     TString path = "output_120423_BDTVars/Run2";
+     std::vector<TString> files = {"NonResWWZ.root","ZHWWZ.root","TTZ.root","ZZ.root","tWZ.root","WZ.root","Other.root","VVV.root"};
 
      for ( auto f : files){
            doMerge(path+"/"+f);

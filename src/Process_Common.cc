@@ -24,7 +24,7 @@ void Process_Common_NanoAOD()
     //---------------------------------------------------------------------------------------------
     // Flag for lepton ID
     bool new_lepton_ID = true;  // true for new ID, false for old ID
-    const ULong64_t event_check = 1800002;
+    const ULong64_t event_check = 3744129;
 
     if (nt.event() == event_check) std::cout << "Debug 0.1" << endl;
 
@@ -726,9 +726,14 @@ void Process_Common_NanoAOD()
             if (jet_p4.pt() > 20. and abs(jet_p4.eta()) < 2.4 and pass_jetID)//don't trust jets in HF
             {
 
+		if ( nt.run() == 1 && nt.luminosityBlock() == 1002 && nt.event() == 1001276 ){
+		     std::cout << "DeepFlav B score = " << nt.Jet_btagDeepFlavB()[ijet] << std::endl;
+		}
 		//std::cout << "Jet passes selection requirements" << std::endl;
                 // For now, accept anything that reaches this point
                 ana.tx.pushbackToBranch<int>("Common_jet_idxs", ijet);
+		ana.tx.pushbackToBranch<float>("Common_jet_btagDeepFlav", nt.Jet_btagDeepFlavB()[ijet] );
+		ana.tx.pushbackToBranch<float>("Common_jet_btagDeepCSV", nt.Jet_btagDeepB()[ijet] ); 
                 ana.tx.pushbackToBranch<int>("Common_jet_id", nt.Jet_jetId()[ijet]);
                 ana.tx.pushbackToBranch<int>("Common_jet_puid", nt.Jet_puId()[ijet]);
                 ana.tx.pushbackToBranch<LorentzVector>("Common_jet_p4", jet_p4);
@@ -1836,7 +1841,7 @@ void Process_Common_NanoAOD()
     // Sorting jet branches
     ana.tx.sortVecBranchesByPt(
             /* name of the 4vector branch to use to pt sort by*/               "Common_jet_p4",
-            /* names of any associated vector<float> branches to sort along */ {},
+            /* names of any associated vector<float> branches to sort along */ {"Common_jet_btagDeepFlav", "Common_jet_btagDeepCSV",},
             /* names of any associated vector<int>   branches to sort along */ {"Common_jet_idxs", "Common_jet_overlapfatjet", "Common_jet_id", "Common_jet_genJetIdx", "Common_jet_hadronFlavour", "Common_jet_partonFlavour",},
             /* names of any associated vector<bool>  branches to sort along */ {"Common_jet_passBloose", "Common_jet_passBmedium", "Common_jet_passBtight","Common_jet_passBloose_CSV","Common_jet_passBmedium_CSV","Common_jet_passBtight_CSV"}
             );

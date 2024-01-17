@@ -11,8 +11,8 @@ skimversion = "3LepTau_4Lep"
 skimdir = os.environ["looperOutput"]
 #dataversion = "OldLepID"
 #dataversion = "051723"
-dataversion = "100523_SampleAddition"
-outputdir = "output_101423_Synchronization"
+dataversion = "110123_Synchronization"
+outputdir = "output_010124_BDTVars"
 
 #____________________________________________________________________________________________
 def main():
@@ -128,8 +128,9 @@ years=["2016APV", "2016", "2017", "2018"]
 # List of different process groups
 #proc_groups = [ "WWW", "NonResWWZ", "ZHWWZ", "WZZ", "ZZZ", "Higgs", "ZZ", "TTZ", "WZ", "Other", ]
 proc_groups = [ "NonResWWZ", "ZHWWZ", "ZZ", "TTZ", "tWZ", "WZ", "VVV", "Other"]
+#proc_groups = [ "NonResWWZ" ]
 #proc_groups = [ "NonResWWZ", "ZHWWZ", "ZZ", "TTZ", "WZ", "Higgs", "TTBar", "DY", "WLNu", "WWLNu", "SSWW", "TTW", "SingleTop", "Other"]
-#proc_groups = [ "GGZHWW_WW2l", "ZHWW_4l", "WWZ_4l", "WWZ", "ZZ4l", "ZZ2l2q", "ZZ2l2v", "GGZZ2e2m", "GGZZ2e2t", "GGZZ2m2t", "GGZZ4e", "GGZZ4m", "GGZZ4t", "TT2l", "TT1l", "TTZll_M1", "TTZll_M10", "TTZqq", "DYM10", "DYM50", "Wlv", "WWlvlv", "WZ", "ttHNonbb", "VHToNonbb", "SSWW", "TTWlv", "TTWqq", "tZq", "ST_schan_lep", "ST_antitop_tchan", "ST_top_tchan", "ST_top_nohad_tW", "ST_antitop_nohad_tW", "WWW", "WZZ", "ZZZ", "tWZ" ]
+#proc_groups = [ "GGZHWW_WW2l", "ZHWW_4l", "WWZ_4l", "WWZ", "ZZ4l", "ZZ2l2q", "ZZ2l2v", "GGZZ2e2m", "GGZZ2e2t", "GGZZ2m2t", "GGZZ4e", "GGZZ4m", "GGZZ4t", "TT2l", "TT1l", "TTZll_M1", "TTZll_M10", "TTZqq", "DYM10", "DYM50", "Wlv", "WWlvlv", "WZ", "ttHNonbb", "VHToNonbb", "SSWW", "TTWlv", "TTWqq", "tZq", "ST_schan_lep", "ST_antitop_tchan", "ST_top_tchan", "ST_top_nohad_tW", "ST_antitop_nohad_tW", "WWW", "WZZ", "ZZZ", "tWZ", "WZ3l1v", "WZ2q2l" ]
 
 #____________________________________________________________________________________________
 # Process grouping definition
@@ -157,6 +158,8 @@ proc_groups = [ "NonResWWZ", "ZHWWZ", "ZZ", "TTZ", "tWZ", "WZ", "VVV", "Other"]
 #"Wlv" 		      : "Wlv",          #: "Other",
 #"WWlvlv"	      : "WWlvlv",          #: "Other",
 #"WZ"		      : "WZ",          #: "WZ",
+#"WZ3l1v"              : "WZ3l1v",
+#"WZ2q2l"              : "WZ2q2l",
 #"ttHNonbb"	      : "ttHNonbb",          #: "Higgs",
 #"VHToNonbb"	      : "VHToNonbb",          #: "Higgs",
 #"SSWW"		      : "SSWW",          #: "Other",
@@ -194,7 +197,8 @@ process={
 "DYM50"               : "Other",
 "Wlv"                 : "Other",
 "WWlvlv"              : "Other",
-"WZ"                  : "WZ",
+#"WZ"                  : "WZ",
+"WZ3l1v"              : "WZ",
 "ttHNonbb"            : "Other",            # : "Higgs",
 "VHToNonbb"           : "Other",            # : "Higgs",
 "SSWW"                : "Other",

@@ -14,5 +14,7 @@ void setupBDTBranches_SF_test();
 void setupBDTBranches_SF_train();
 void fillBDTBranches_SF_test();
 void fillBDTBranches_SF_train(); 
+double helicity(const LorentzVector particle_1, const LorentzVector particle_2);
+double computeMT(const LorentzVector particle, const LorentzVector met); 
 
 #endif 

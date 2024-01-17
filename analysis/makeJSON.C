@@ -8,7 +8,7 @@ void makeJSON(bool includeWeights, bool singleFile){
      TString tag = "";
 
      if (!singleFile){ 
-     	path += "output_101423_Synchronization/Run2/";
+     	path += "output_110123_Sync_DeepCSV/Run2/";
      	file += "NonResWWZ.root";
 	tag += "";
      }
@@ -88,10 +88,10 @@ void makeJSON(bool includeWeights, bool singleFile){
 		       if ( year == y_idx && APV == APVflag && bin == b_idx ){
 			    if (!includeWeights){
 			        //std::cout << "event = " << event << std::endl;
-			        signal_region_events << "        \""<< event <<"\":\""<< run << "\":\""<< lumi << "\"," << "\n";
+			        signal_region_events << "        \""<< event <<":"<< run << ":"<< lumi << "\"," << "\n";
 			    }
 			    else{
-				signal_region_events << "        \""<< event << "\":\""<< run << "\":\"" << lumi << "\":\"" << weight << "\"," << "\n";
+				signal_region_events << "        \""<< event << ":"<< run << ":" << lumi << ":" << weight << "\"," << "\n";
 			    }
 		       }
 		       else{

@@ -291,6 +291,8 @@ void vvvtree::Init(TTree *tree) {
   if (Common_jet_partonFlavour_branch) Common_jet_partonFlavour_branch->SetAddress(&Common_jet_partonFlavour_);
   Common_jet_overlapfatjet_branch = tree->GetBranch("Common_jet_overlapfatjet");
   if (Common_jet_overlapfatjet_branch) Common_jet_overlapfatjet_branch->SetAddress(&Common_jet_overlapfatjet_);
+  Common_jet_btagDeepFlav_branch = tree->GetBranch("Common_jet_btagDeepFlav");
+  if (Common_jet_btagDeepFlav_branch) Common_jet_btagDeepFlav_branch->SetAddress(&Common_jet_btagDeepFlav_);
   Common_jet_pt_jesup_branch = tree->GetBranch("Common_jet_pt_jesup");
   if (Common_jet_pt_jesup_branch) Common_jet_pt_jesup_branch->SetAddress(&Common_jet_pt_jesup_);
   Common_jet_pt_jesdn_branch = tree->GetBranch("Common_jet_pt_jesdn");
@@ -738,6 +740,7 @@ void vvvtree::GetEntry(unsigned int idx) {
   Common_jet_hadronFlavour_isLoaded = false;
   Common_jet_partonFlavour_isLoaded = false;
   Common_jet_overlapfatjet_isLoaded = false;
+  Common_jet_btagDeepFlav_isLoaded = false;
   Common_jet_pt_jesup_isLoaded = false;
   Common_jet_pt_jesdn_isLoaded = false;
   Common_jet_pt_jerup_isLoaded = false;
@@ -1038,6 +1041,7 @@ void vvvtree::LoadAllBranches() {
   if (Common_jet_hadronFlavour_branch != 0) Common_jet_hadronFlavour();
   if (Common_jet_partonFlavour_branch != 0) Common_jet_partonFlavour();
   if (Common_jet_overlapfatjet_branch != 0) Common_jet_overlapfatjet();
+  if (Common_jet_btagDeepFlav_branch != 0) Common_jet_btagDeepFlav();
   if (Common_jet_pt_jesup_branch != 0) Common_jet_pt_jesup();
   if (Common_jet_pt_jesdn_branch != 0) Common_jet_pt_jesdn();
   if (Common_jet_pt_jerup_branch != 0) Common_jet_pt_jerup();
@@ -2942,6 +2946,19 @@ const vector<int> &vvvtree::Common_jet_overlapfatjet() {
     Common_jet_overlapfatjet_isLoaded = true;
   }
   return *Common_jet_overlapfatjet_;
+}
+
+const vector<float> &vvvtree::Common_jet_btagDeepFlav() {
+  if (not Common_jet_btagDeepFlav_isLoaded) {
+    if (Common_jet_btagDeepFlav_branch != 0) {
+      Common_jet_btagDeepFlav_branch->GetEntry(index);
+    } else {
+      printf("branch Common_jet_btagDeepFlav_branch does not exist!\n");
+      exit(1);
+    }
+    Common_jet_btagDeepFlav_isLoaded = true;
+  }
+  return *Common_jet_btagDeepFlav_;
 }
 
 const vector<float> &vvvtree::Common_jet_pt_jesup() {
@@ -5207,6 +5224,7 @@ const vector<int> &Common_jet_genJetIdx() { return vvv.Common_jet_genJetIdx(); }
 const vector<int> &Common_jet_hadronFlavour() { return vvv.Common_jet_hadronFlavour(); }
 const vector<int> &Common_jet_partonFlavour() { return vvv.Common_jet_partonFlavour(); }
 const vector<int> &Common_jet_overlapfatjet() { return vvv.Common_jet_overlapfatjet(); }
+const vector<float> &Common_jet_btagDeepFlav() { return vvv.Common_jet_btagDeepFlav(); }
 const vector<float> &Common_jet_pt_jesup() { return vvv.Common_jet_pt_jesup(); }
 const vector<float> &Common_jet_pt_jesdn() { return vvv.Common_jet_pt_jesdn(); }
 const vector<float> &Common_jet_pt_jerup() { return vvv.Common_jet_pt_jerup(); }
