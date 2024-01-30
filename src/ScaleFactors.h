@@ -18,7 +18,7 @@
 class LeptonScaleFactor {
 
   public:
-    LeptonScaleFactor(std::string const& leptonsfpath="src/scalefactors/LeptonSF.csv");
+    LeptonScaleFactor(std::string const& leptonsfpath="src/scalefactors/LeptonSF_TopULMVA.csv");
     ~LeptonScaleFactor();
     float leptonSF(bool isdata, int year, int pdgid, float eta, float pt, long long run = -1, int variation=0);
 

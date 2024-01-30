@@ -2,9 +2,8 @@ source rooutil/bin/thisrooutil.sh
 source rooutil/bin/setuproot.sh
 export condorPath="/home/users/kdownham/Triboson/VVVNanoLooper/condor"
 export skimDir="/ceph/cms/store/user/kdownham/skimOutput/3LepTau_4Lep"
-export looperOutput="/ceph/cms/store/user/kdownham/VVVAnalysis/110123_Synchronization"
-#export skimDir="/ceph/cms/store/user/kdownham/skimOutput/WWZ_4L"
-#export looperOutput="/ceph/cms/store/user/kdownham/VVVAnalysis/OldLepID"
+#export looperOutput="/ceph/cms/store/user/kdownham/VVVAnalysis/110123_Synchronization"
+export looperOutput="/ceph/cms/store/user/kdownham/VVVAnalysis/012924_LeptonSFs"
 xgboost_cfg=${CMSSW_BASE}/config/toolbox/${SCRAM_ARCH}/tools/selected/py3-xgboost.xml
 xgboost_version="$(grep -e 'tool name' ${xgboost_cfg} | grep 'py3-xgboost')"
 xgboost_version="${xgboost_version##*=\"}"

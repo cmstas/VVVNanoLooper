@@ -337,46 +337,52 @@ void Process_Common_NanoAOD()
 
             //---------
             // bool istight = nt.Electron_mvaFall17V2Iso_WP80()[iel];
-            float pt = std::min(std::max(nt.Electron_p4()[iel].pt(), 10.01f), 499.9f);
+            float pt = std::min(std::max(nt.Electron_p4()[iel].pt(), 10.01f), 199.9f);
             float eta = std::min(std::max(nt.Electron_p4()[iel].eta(), -2.499f), 2.499f);
-            float sf = (pt > 20 ? ana.electronRECOSFgt20->eval(eta, pt) : ana.electronRECOSFlt20->eval(eta, pt)) * ana.electronMVAID90SF->eval(eta, pt);
-            lepSFc  *= sf;
-            lepSFum *= sf;
-            lepSFdm *= sf;
+            float sf = ana.electronMVAID90SF->eval(eta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
-            sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_up(eta, pt) : ana.electronRECOSFlt20->eval_up(eta, pt)) * ana.electronMVAID90SF->eval_up(eta, pt);
-            lepSFue *= sf;
+            sf = ana.electronMVAID90SF->eval_up(eta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
-            sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_down(eta, pt) : ana.electronRECOSFlt20->eval_down(eta, pt)) * ana.electronMVAID90SF->eval_down(eta, pt);
-            lepSFde *= sf;
+            sf = ana.electronMVAID90SF->eval_up(eta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
-            sf       = (pt > 20 ? ana.electronRECOSFgt20->eval(eta, pt) : ana.electronRECOSFlt20->eval(eta, pt)) * ana.electronMVAID80SF->eval(eta, pt);
-            lepSFcTight  *= sf;
-            lepSFumTight *= sf;
-            lepSFdmTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
-            sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_up(eta, pt) : ana.electronRECOSFlt20->eval_up(eta, pt)) * ana.electronMVAID80SF->eval_up(eta, pt);
-            lepSFueTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
-            sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_down(eta, pt) : ana.electronRECOSFlt20->eval_down(eta, pt)) * ana.electronMVAID80SF->eval_down(eta, pt);
-            lepSFdeTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
+            //float sf = (pt > 20 ? ana.electronRECOSFgt20->eval(eta, pt) : ana.electronRECOSFlt20->eval(eta, pt)) * ana.electronMVAID90SF->eval(eta, pt);
+            //lepSFc  *= sf;
+            //lepSFum *= sf;
+            //lepSFdm *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
+            //sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_up(eta, pt) : ana.electronRECOSFlt20->eval_up(eta, pt)) * ana.electronMVAID90SF->eval_up(eta, pt);
+            //lepSFue *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
+            //sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_down(eta, pt) : ana.electronRECOSFlt20->eval_down(eta, pt)) * ana.electronMVAID90SF->eval_down(eta, pt);
+            //lepSFde *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
+            //sf       = (pt > 20 ? ana.electronRECOSFgt20->eval(eta, pt) : ana.electronRECOSFlt20->eval(eta, pt)) * ana.electronMVAID80SF->eval(eta, pt);
+            //lepSFcTight  *= sf;
+            //lepSFumTight *= sf;
+            //lepSFdmTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
+            //sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_up(eta, pt) : ana.electronRECOSFlt20->eval_up(eta, pt)) * ana.electronMVAID80SF->eval_up(eta, pt);
+            //lepSFueTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
+            //sf       = (pt > 20 ? ana.electronRECOSFgt20->eval_down(eta, pt) : ana.electronRECOSFlt20->eval_down(eta, pt)) * ana.electronMVAID80SF->eval_down(eta, pt);
+            //lepSFdeTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
 
             //---------
-            // float sf = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(), 0);
-            // lepSFc  *= sf;
-            // lepSFum *= sf;
-            // lepSFdm *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
-            // sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(),+1);
-            // lepSFue *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
-            // sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(),-1);
-            // lepSFde *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
+            //float sf = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(), 0);
+            //lepSFc  *= sf;
+            //lepSFum *= sf;
+            //lepSFdm *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
+            //sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(),+1);
+            //lepSFue *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
+            //sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),11,nt.Electron_p4()[iel].eta(),nt.Electron_p4()[iel].pt(),nt.event(),-1);
+            //lepSFde *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
         }
     }
     //---------------------------------------------------------------------------------------------
@@ -504,49 +510,58 @@ void Process_Common_NanoAOD()
             // float ptreco = std::min(std::max(nt.Muon_p4()[imu].pt(), 2.01f), 39.9f);	//scale factor for reco pt of muon ranged in [2,40]
             // scale factor for muon reco is measured in 40 to 60GeV, but availabe for 10 to 200GeV,
             // see https://twiki.cern.ch/twiki/bin/viewauth/CMS/MuonUL2018#RECO_efficiency
-            float pt = std::min(std::max(nt.Muon_p4()[imu].pt(), 15.01f), 119.9f);
+            float pt = std::min(std::max(nt.Muon_p4()[imu].pt(), 10.01f), 119.9f);
             float abseta = std::min(std::max(fabs(nt.Muon_p4()[imu].eta()), 0.01f), 2.399f);
-            float sf = ana.muonRECOSF->eval(abseta, 50.0f) * ana.muonIDSFMedium->eval(abseta, pt) * ana.muonISOSFLoose->eval(abseta, pt);
-            lepSFc  *= sf;
-            lepSFue *= sf;
-            lepSFde *= sf;
+            float sf = ana.muonISOSFTight->eval(abseta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
-            sf       = ana.muonRECOSF->eval_up(abseta, 50.0f) * ana.muonIDSFMedium->eval_up(abseta, pt) * ana.muonISOSFLoose->eval_up(abseta, pt);
-            lepSFum *= sf;
+            sf = ana.muonISOSFTight->eval_up(abseta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
-            sf       = ana.muonRECOSF->eval_down(abseta, 50.0f) * ana.muonIDSFMedium->eval_down(abseta, pt) * ana.muonISOSFLoose->eval_down(abseta, pt);
-            lepSFdm *= sf;
+            sf = ana.muonISOSFTight->eval_down(abseta, pt);
             ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
-            sf = ana.muonRECOSF->eval(abseta, 50.0f) * ana.muonIDSFMedium->eval(abseta, pt) * ana.muonISOSFTight->eval(abseta, pt);
-            lepSFcTight  *= sf;
-            lepSFueTight *= sf;
-            lepSFdeTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
-            sf       = ana.muonRECOSF->eval_up(abseta, 50.0f) * ana.muonIDSFMedium->eval_up(abseta, pt) * ana.muonISOSFTight->eval_up(abseta, pt);
-            lepSFumTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
-            sf       = ana.muonRECOSF->eval_down(abseta, 50.0f) * ana.muonIDSFMedium->eval_down(abseta, pt) * ana.muonISOSFTight->eval_down(abseta, pt);
-            lepSFdmTight *= sf;
-            ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
+            //-----------
+            // SMP-19-014 Prescription
+            //-----------
+            //float sf = ana.muonRECOSF->eval(abseta, 50.0f) * ana.muonIDSFMedium->eval(abseta, pt) * ana.muonISOSFLoose->eval(abseta, pt);
+            //lepSFc  *= sf;
+            //lepSFue *= sf;
+            //lepSFde *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
+            //sf       = ana.muonRECOSF->eval_up(abseta, 50.0f) * ana.muonIDSFMedium->eval_up(abseta, pt) * ana.muonISOSFLoose->eval_up(abseta, pt);
+            //lepSFum *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
+            //sf       = ana.muonRECOSF->eval_down(abseta, 50.0f) * ana.muonIDSFMedium->eval_down(abseta, pt) * ana.muonISOSFLoose->eval_down(abseta, pt);
+            //lepSFdm *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
+            //sf = ana.muonRECOSF->eval(abseta, 50.0f) * ana.muonIDSFMedium->eval(abseta, pt) * ana.muonISOSFTight->eval(abseta, pt);
+            //lepSFcTight  *= sf;
+            //lepSFueTight *= sf;
+            //lepSFdeTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
+            //sf       = ana.muonRECOSF->eval_up(abseta, 50.0f) * ana.muonIDSFMedium->eval_up(abseta, pt) * ana.muonISOSFTight->eval_up(abseta, pt);
+            //lepSFumTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
+            //sf       = ana.muonRECOSF->eval_down(abseta, 50.0f) * ana.muonIDSFMedium->eval_down(abseta, pt) * ana.muonISOSFTight->eval_down(abseta, pt);
+            //lepSFdmTight *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
             //---------
-            // string period = "X";
-            // if (nt.year() == 2016 and nt.run() <= 278808) period = "BCDEF";
-            // else if (nt.year() == 2016) period = "GH";
-            // float sf = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(), 0);
-            // lepSFc  *= sf;
-            // lepSFue *= sf;
-            // lepSFde *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
-            // sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(),+1);
-            // lepSFum *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
-            // sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(),-1);
-            // lepSFdm *= sf;
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
-            // ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
-	    if (nt.event() == event_check) std::cout << "Debug 4" << endl;
+            //string period = "X";
+            //if (nt.year() == 2016 and nt.run() <= 278808) period = "BCDEF";
+            //else if (nt.year() == 2016) period = "GH";
+            //float sf = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(), 0);
+            //lepSFc  *= sf;
+            //lepSFue *= sf;
+            //lepSFde *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SF",        sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFTight",   sf);
+            //sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(),+1);
+            //lepSFum *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFup",      sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFupTight", sf);
+            //sf       = ana.leptonscalefactors.leptonSF(nt.isData(),nt.year(),13,nt.Muon_p4()[imu].eta(),nt.Muon_p4()[imu].pt(),nt.event(),-1);
+            //lepSFdm *= sf;
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdn",      sf);
+            //ana.tx.pushbackToBranch<float>("Common_lep_SFdnTight", sf);
+	    //if (nt.event() == event_check) std::cout << "Debug 4" << endl;
         }
     }
     //---------------------------------------------------------------------------------------------

@@ -577,28 +577,32 @@ void Begin_Common_Set_Config()
         ana.muonRECOSF     = new RooUtil::HistMap("config/MuonReco_Run2016preVFP_UL.root:NUM_TrackerMuons_DEN_genTracks_Z_abseta_pt");
         ana.muonIDSFMedium = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_HIPM_ID.root:NUM_MediumID_DEN_TrackerMuons_abseta_pt");
         ana.muonISOSFLoose = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_HIPM_ISO.root:NUM_LooseRelIso_DEN_MediumID_abseta_pt");
-        ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_HIPM_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        //ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_HIPM_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        ana.muonISOSFTight = new RooUtil::HistMap("config/NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt_2016APV.root:NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt"); // TOP-UL MVA ID SF
     }
     else if (nt.year() == 2016 and not isAPV)
     {
         ana.muonRECOSF     = new RooUtil::HistMap("config/MuonReco_Run2016postVFP_UL.root:NUM_TrackerMuons_DEN_genTracks_Z_abseta_pt");
         ana.muonIDSFMedium = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root:NUM_MediumID_DEN_TrackerMuons_abseta_pt");
         ana.muonISOSFLoose = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root:NUM_LooseRelIso_DEN_MediumID_abseta_pt");
-        ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        //ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        ana.muonISOSFTight = new RooUtil::HistMap("config/NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt_2016.root:NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt"); // TOP-UL MVA ID SF
     }
     else if (nt.year() == 2017)
     {
         ana.muonRECOSF     = new RooUtil::HistMap("config/MuonReco_Run2017_UL.root:NUM_TrackerMuons_DEN_genTracks_Z_abseta_pt");
         ana.muonIDSFMedium = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2017_UL_ID.root:NUM_MediumID_DEN_TrackerMuons_abseta_pt");
         ana.muonISOSFLoose = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2017_UL_ISO.root:NUM_LooseRelIso_DEN_MediumID_abseta_pt");
-        ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2017_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        //ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2017_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        ana.muonISOSFTight = new RooUtil::HistMap("config/NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt_2017.root:NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt"); // TOP-UL MVA ID SF
     }
     else if (nt.year() == 2018)
     {
         ana.muonRECOSF     = new RooUtil::HistMap("config/MuonReco_Run2018_UL.root:NUM_TrackerMuons_DEN_genTracks_Z_abseta_pt");
         ana.muonIDSFMedium = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2018_UL_ID.root:NUM_MediumID_DEN_TrackerMuons_abseta_pt");
         ana.muonISOSFLoose = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root:NUM_LooseRelIso_DEN_MediumID_abseta_pt");
-        ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        //ana.muonISOSFTight = new RooUtil::HistMap("config/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root:NUM_TightRelIso_DEN_MediumID_abseta_pt");
+        ana.muonISOSFTight = new RooUtil::HistMap("config/NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt_2018.root:NUM_LeptonMvaTight_DEN_TrackerMuons_abseta_pt"); // TOP-UL MVA ID SF
     }
     else
     {
@@ -613,28 +617,32 @@ void Begin_Common_Set_Config()
     {
         ana.electronRECOSFlt20 = new RooUtil::HistMap("config/egammaEffi_ptBelow20.txt_EGM2D_UL2016preVFP.root:EGamma_SF2D");
         ana.electronRECOSFgt20 = new RooUtil::HistMap("config/egammaEffi_ptAbove20.txt_EGM2D_UL2016preVFP.root:EGamma_SF2D");
-        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_preVFP_EGM2D.root:EGamma_SF2D");
+        //ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_preVFP_EGM2D.root:EGamma_SF2D");
+        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi_txt_EGM2D_UL16APV.root:EGamma_SF2D");  // TOP-UL MVA ID SF
         ana.electronMVAID80SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp80iso_preVFP_EGM2D.root:EGamma_SF2D");
     }
     else if (nt.year() == 2016 and not isAPV)
     {
         ana.electronRECOSFlt20 = new RooUtil::HistMap("config/egammaEffi_ptBelow20.txt_EGM2D_UL2016postVFP.root:EGamma_SF2D");
-        ana.electronRECOSFgt20 = new RooUtil::HistMap("config/egammaEffi_ptAbove20.txt_EGM2D_UL2016postVFP.root:EGamma_SF2D");
-        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_postVFP_EGM2D.root:EGamma_SF2D");
+        ana.electronRECOSFgt20 = new RooUtil::HistMap("config/egammaEffi_ptAbove20.txt_EGM2D_UL2016postVFP.root:EGamma_SF2D"); 
+        //ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_postVFP_EGM2D.root:EGamma_SF2D");
+        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi_txt_EGM2D_UL16.root:EGamma_SF2D"); // TOP-UL MVA ID SF
         ana.electronMVAID80SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp80iso_postVFP_EGM2D.root:EGamma_SF2D");
     }
     else if (nt.year() == 2017)
     {
         ana.electronRECOSFlt20 = new RooUtil::HistMap("config/egammaEffi_ptBelow20.txt_EGM2D_UL2017.root:EGamma_SF2D");
         ana.electronRECOSFgt20 = new RooUtil::HistMap("config/egammaEffi_ptAbove20.txt_EGM2D_UL2017.root:EGamma_SF2D");
-        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_EGM2D_MVA90iso_UL17.root:EGamma_SF2D");
+        //ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_EGM2D_MVA90iso_UL17.root:EGamma_SF2D");
+        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi_txt_EGM2D_UL17.root:EGamma_SF2D"); // TOP-UL MVA ID SF
         ana.electronMVAID80SF  = new RooUtil::HistMap("config/egammaEffi.txt_EGM2D_MVA80iso_UL17.root:EGamma_SF2D");
     }
     else if (nt.year() == 2018)
     {
         ana.electronRECOSFlt20 = new RooUtil::HistMap("config/egammaEffi_ptBelow20.txt_EGM2D_UL2018.root:EGamma_SF2D");
         ana.electronRECOSFgt20 = new RooUtil::HistMap("config/egammaEffi_ptAbove20.txt_EGM2D_UL2018.root:EGamma_SF2D");
-        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_EGM2D.root:EGamma_SF2D");
+        //ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp90iso_EGM2D.root:EGamma_SF2D");
+        ana.electronMVAID90SF  = new RooUtil::HistMap("config/egammaEffi_txt_EGM2D_UL18.root:EGamma_SF2D"); // TOP-UL MVA ID SF
         ana.electronMVAID80SF  = new RooUtil::HistMap("config/egammaEffi.txt_Ele_wp80iso_EGM2D.root:EGamma_SF2D");
     }
     else

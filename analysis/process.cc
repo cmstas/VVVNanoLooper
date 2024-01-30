@@ -441,6 +441,21 @@ int main(int argc, char** argv)
                                           return vvv.Common_noiseFlag();
                                       }, UNITY);
 
+    ana.cutflow.addCutToLastActiveCut("CutScaleFactors", UNITY, [&]()
+				      {
+					float lepSF;
+					// Loop over leptons in event
+					for ( int i = 0; i < vvv.Common_lep_SF().size(); i++ ){
+					      //std::cout << "Lepton PdgId = " << vvv.Common_lep_pdgid()[i] << std::endl;
+					      //std::cout << "Lepton pT    = " << vvv.Common_lep_p4()[i].pt() << std::endl;
+					      //std::cout << "Lepton eta   = " << vvv.Common_lep_p4()[i].eta() << std::endl;
+					      //std::cout << "Lepton SF    = " << vvv.Common_lep_SF()[i] << std::endl;
+					      lepSF *= vvv.Common_lep_SF()[i];
+					}
+
+					return lepSF;
+				      } ); 
+
     ana.cutflow.addCutToLastActiveCut("CutWeight", UNITY, [&]()
                        {
                            bool isWWZEFT = ana.looper.getCurrentFileName().Contains("WWZ_RunIISummer20UL18NanoAODv9_FourleptonFilter_FilterFix_merged");
@@ -1622,6 +1637,32 @@ int main(int argc, char** argv)
         }                                                                 
         
 	float evt_weight = vvv.Var_4LepMET_scaleLumi() * vvv.Common_genWeight() * weight;
+
+        float lepSFs = 1.;
+	for ( int i=0; i < vvv.Common_lep_SF().size(); i++ ){
+	    lepSFs *= vvv.Common_lep_SF()[i];
+        }
+
+        evt_weight *= lepSFs;
+
+        // Un-comment this block if you would like to check the lepton Scale Factors
+        //if (eventlist_to_check.has(vvv.Common_run(), vvv.Common_lumi(), vvv.Common_evt())){
+	//    std::cout << "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" << std::endl;
+	//    std::cout << "Event weight before applying lepton scale factors = " << evt_weight << std::endl;
+	//    std::cout << "----------------------------------------------------------------" << std::endl;
+	//    //Loop over leptons
+	//    float lepSFs = 1.;
+	//    for ( int i = 0; i < vvv.Common_lep_SF().size(); i++ ){
+	//	  std::cout << "Lepton ID  = " << vvv.Common_lep_pdgid()[i] << std::endl;
+	//	  std::cout << "Lepton pT  = " << vvv.Common_lep_p4()[i].pt() << std::endl;
+	//	  std::cout << "Lepton eta = " << vvv.Common_lep_p4()[i].eta() << std::endl;
+	//	  std::cout << "Lepton SF  = " << vvv.Common_lep_SF()[i] << std::endl;
+	//	  lepSFs *= vvv.Common_lep_SF()[i];
+	//    }
+	//    std::cout << "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" << std::endl;
+        //    std::cout << "Event weight after applying lepton scale factors = " << evt_weight*lepSFs << std::endl;
+        //    std::cout << "----------------------------------------------------------------" << std::endl;
+        //}
 
         float sumHT = 0.;
 	for ( unsigned int j_idx = 0; j_idx < vvv.Common_jet_p4().size(); j_idx++ ){

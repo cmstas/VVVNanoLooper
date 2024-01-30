@@ -15,8 +15,8 @@ PROCESS=WWZJetsTo4L2Nu_4F_TuneCP5_13TeV-amcatnlo-pythia8_RunIISummer20UL18NanoAO
 OUTPUTDIR=/home/users/kdownham/Triboson/VVVNanoLooper
 #NAME=output_WWZJets_16APV_sync_Oct19.root
 
-for i in $(seq 1 7); do
-./doVVVAnalysis -i ${INPUTDIR}/${PROCESS}/output_${i}.root -t Events -o ${OUTPUTDIR}/output_WWZJets_${i}.root --mode 0 -w
+for i in $(seq 7 7); do
+./doVVVAnalysis -i ${INPUTDIR}/${PROCESS}/output_${i}.root -t Events -o ${OUTPUTDIR}/output_WWZJets_${i}_newSF.root --mode 0 -w
 done
 
 #./doVVVAnalysis -i ${INPUTDIR}/${PROCESS}/output_8.root --tree Events --mode 0 --output ${OUTPUTDIR}/${NAME} -w 1

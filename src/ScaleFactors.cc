@@ -134,8 +134,8 @@ float LeptonScaleFactor::leptonSF(bool isdata, int year, int pdgid, float eta, f
   float myeta = eta;
   if(abs(pdgid)==13&&year!=2016) myeta = abs(myeta);
   string histname = "hSF";
-  if(abs(pdgid)==11) histname += "_ele_MVA90";
-  else if(abs(pdgid)==13) histname += "_muo_mediumID";
+  if(abs(pdgid)==11) histname += "_ele_Tight";
+  else if(abs(pdgid)==13) histname += "_muo_tightID";
   histname += ("_" + std::to_string(year) + period);
   //std::cout << histname << "   " << __LINE__ << std::endl;
   float SF(1.), SFerr(0.);
@@ -155,8 +155,8 @@ float LeptonScaleFactor::leptonSF(bool isdata, int year, int pdgid, float eta, f
   }
   float SF2(1.), SF2err(0.);
   string histname2 = histname;
-  size_t index = histname2.find(string("mediumID"), index);
-  histname2.replace(index, string("mediumID").length(), string("looseIso"));
+  size_t index = histname2.find(string("tightID"), index);
+  histname2.replace(index, string("tightID").length(), string("looseIso"));
   bin = hSFlep[histname2]->FindBin(std::min(hSFlep[histname2]->GetXaxis()->GetBinLowEdge(hSFlep[histname2]->GetNbinsX()+1)-0.001,std::max(hSFlep[histname2]->GetXaxis()->GetBinLowEdge(1)+0.001,double(pt))),std::min(hSFlep[histname2]->GetYaxis()->GetBinLowEdge(hSFlep[histname2]->GetNbinsY()+1)-0.000001,std::max(hSFlep[histname2]->GetYaxis()->GetBinLowEdge(1)+0.000001,double(myeta))));
   SF2 = hSFlep[histname2]->GetBinContent(bin);
   SF2err = hSFlep[histname2]->GetBinError(bin);

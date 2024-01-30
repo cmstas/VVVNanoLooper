@@ -134,6 +134,7 @@ TH1F* fillHists(TTree* tree, TString varname, float xmin, float xmax, float ymax
 	   if ( varname == "leading_Wcand_pt" )     h->Fill(leading_Wcand_pt,weight);
 	   if ( varname == "subleading_Wcand_pt" )  h->Fill(subleading_Wcand_pt,weight);
            if ( varname == "njets" )                h->Fill(njets,weight);
+           if ( varname == "leading_jet_DeepFlav" ) h->Fill(leading_jet_DeepFlav,weight);
            if ( varname == "cos_helicity_X" )       h->Fill(cos_helicity_X,weight);
            if ( varname == "MT_leading_Wcand" )     h->Fill(MT_leading_Wcand,weight);
            if ( varname == "MT_subleading_Wcand" )  h->Fill(MT_subleading_Wcand,weight);
